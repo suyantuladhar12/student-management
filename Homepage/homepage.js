@@ -13,6 +13,7 @@ $(document).ready(function () {
     } else {
         alert('Invalid role or missing role parameter.');
     }
+
     $("#logoutBtn").click(function () {
         handleLogout();
     });
@@ -22,7 +23,7 @@ function displayStudentProfile(userId) {
     const userDetails = getUserDetailsById(userId);
     const parentDetails = getParentDetailsById(userId);
 
-    $('#studentView').show();
+    $('#studentProfileContainer').show();
     $('#firstName').text(userDetails.firstName);
     $('#lastName').text(userDetails.lastName);
     $('#email').text(getUserById(userId).email);
@@ -34,18 +35,18 @@ function displayStudentProfile(userId) {
     $('#father').text(parentDetails.father);
     $('#mother').text(parentDetails.mother);
     $('#contact').text(parentDetails.contact);
+    $('#profilePic').attr('src', userDetails.image);
 }
 
 function displayAdminProfileList() {
     const students = getAllStudents();
-    $('#adminView').show();
-    $('#profileList').empty(); // Clear previous profiles
+    $('#profileList').empty();
 
     students.forEach(student => {
         const studentCard = `
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Student Picture">
+                    <img src="${student.image}" class="card-img-top" alt="Student Picture">
                     <div class="card-body">
                         <h5 class="card-title">${student.firstName} ${student.lastName}</h5>
                         <p class="card-text">${student.address}</p>
@@ -73,6 +74,7 @@ function showStudentDetails(userId) {
     $('#modalFather').text(parentDetails.father);
     $('#modalMother').text(parentDetails.mother);
     $('#modalContact').text(parentDetails.contact);
+    $('#modalImage').attr('src', userDetails.image);
 
     $('#detailsModal').modal('show');
 }
@@ -92,7 +94,7 @@ function getParentDetailsById(userId) {
 function getAllStudents() {
     return user_details.map(details => {
         const user = getUserById(details.userId);
-        return { ...details, email: user.email, username: user.username };
+        return { ...details, email: user.email, username: user.username, image: details.image || 'default-image.jpg' };
     });
 }
 

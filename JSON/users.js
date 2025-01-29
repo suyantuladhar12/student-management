@@ -50,6 +50,7 @@ const users = [
       "address" : "Thasikhel",
       "rollno" : "34",
       "class" : "10",
+      "image": "images/avatar2.png"
     },
     {
       "userId" : 3,
@@ -59,6 +60,7 @@ const users = [
       "address" : "Pimbahal",
       "rollno" : "27",
       "class" : "10",
+      "image": "images/avatar1.png"
     },
     {
       "userId" : 4,
@@ -68,6 +70,7 @@ const users = [
       "address" : "Banglamukhi",
       "rollno" : "16",
       "class" : "9",
+      "image": "images/avatar3.png"
     }
   ]
   

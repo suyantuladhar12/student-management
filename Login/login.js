@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $(document).keypress(function (event) {
         if (event.which === 13) {
             handleLogin();
@@ -51,6 +50,17 @@ function findUser(emailOrUsername, password) {
 }
 
 function redirectToHomepage(user) {
-    const role = user.roleId === 1 ? "admin" : "student";
-    window.location.href = `/homepage/homepage.html?role=${role}`;
+    const role = getRoleFromId(user.roleId);
+    if (role) {
+        window.location.href = `/homepage/homepage.html?role=${role}&userId=${user.userId}`;
+    } else {
+        console.error('Role not found!');
+    }
+}
+
+
+function getRoleFromId(roleId) {
+    if (roleId === 1) return "admin";
+    if (roleId === 2) return "student";
+    return null;
 }

@@ -1,12 +1,19 @@
-$(document).keypress(function (event) {
-    if (event.which === 13) {  
+$(document).ready(function () {
+
+    $(document).keypress(function (event) {
+        if (event.which === 13) {
+            handleLogin();
+        }
+    });
+
+    $("#submitButton").click(function () {
         handleLogin();
-    }
+    });
 });
 
 function handleLogin() {
-    const emailOrUsername = $("#emailOrUsername").val();
-    const password = $("#password").val();
+    const emailOrUsername = $("#emailOrUsername").val().trim();
+    const password = $("#password").val().trim();
 
     $("#emailError").text("");
     $("#passwordError").text("");
@@ -14,7 +21,7 @@ function handleLogin() {
     if (!validateInput(emailOrUsername, password)) return;
 
     const user = findUser(emailOrUsername, password);
-    
+
     if (user) {
         redirectToHomepage(user);
     } else {
@@ -38,7 +45,7 @@ function validateInput(emailOrUsername, password) {
 }
 
 function findUser(emailOrUsername, password) {
-    return users.find(user => 
+    return users.find(user =>
         (user.email === emailOrUsername || user.username === emailOrUsername) && user.password === password
     );
 }

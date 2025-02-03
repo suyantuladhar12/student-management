@@ -113,6 +113,7 @@ function displayFAQs() {
 function showStudentDetails(userId) {
     const userDetails = getUserDetailsById(userId);
     const parentDetails = getParentDetailsById(userId);
+    const enrollment = getEnrollmentDetailsById(userId);
 
     $('#modalFirstName').text(userDetails.firstName);
     $('#modalLastName').text(userDetails.lastName);
@@ -122,10 +123,14 @@ function showStudentDetails(userId) {
     $('#modalAddress').text(userDetails.address);
     $('#modalRollno').text(userDetails.rollno);
     $('#modalClass').text(userDetails.class);
+    $('#modalHobbies').text(userDetails.hobbies);
+    $('#modalDateofbirth').text(userDetails.dob);    
     $('#modalFather').text(parentDetails.father);
     $('#modalMother').text(parentDetails.mother);
     $('#modalContact').text(parentDetails.contact);
     $('#modalImage').attr('src', userDetails.image);
+    $('#modalEnrollmentdate').text(enrollment.enrollmentdate);
+    $('#modalDeparturedate').text(enrollment.departuredate);
     $('#detailsModal').modal('show');
 }
 

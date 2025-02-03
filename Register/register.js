@@ -28,6 +28,7 @@ function getUserInput() {
         username: $("#username").val().trim(),
         email: $("#email").val().trim(),
         password: $("#password").val(),
+        avatar: $("input[name='avatar']:checked").val(),
     };
 }
 
